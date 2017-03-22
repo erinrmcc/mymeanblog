@@ -29,14 +29,14 @@ userRouter.get('/users', function(req, res){
       });
     } else {
       res.status(200).json({
-        todos: documents
+        users: documents
       });
     }
   });
 });
 
 userRouter.get('/users/:id', function(req, res){
-  user.find({_id: req.params.id}, function(err, documents){
+  user.find({_id: req.params.id}, function(err, document){
     if(err){
       res.status(500).json({
         msg: err
@@ -49,7 +49,7 @@ userRouter.get('/users/:id', function(req, res){
   });
 });
 
-userRouter.put('/users/:ids', function(req, res){
+userRouter.put('/users/:id', function(req, res){
   user.findOneAndUpdate({_id: req.params.id}, req.body, function(err, document){
     if(err){
       res.status(500);json({
