@@ -1,9 +1,9 @@
 var express = require('express');
 var postRouter = express.Router();
-var post = require('../models/post.model');
+var blogPost = require('../models/post.model');
 
 postRouter.get('/posts', function(req, res){
-  post.find({}, function(err, documents){
+  blogPost.find({}, function(err, documents){
     if(err){
       res.status(500).json({
         msg: err
@@ -17,7 +17,7 @@ postRouter.get('/posts', function(req, res){
 });
 
 postRouter.get('/posts/:id', function(req, res){
-  post.find({_id: req.params.id}, function(err, documents){
+  blogPost.find({_id: req.params.id}, function(err, documents){
     if(err){
       res.status(500).json({
         msg: err
@@ -31,8 +31,8 @@ postRouter.get('/posts/:id', function(req, res){
 });
 
 postRouter.post('/posts', function(req, res){
-  var newPost = new post(req.body);
-  newPost.save(function(err, document){
+  var post = new blogPost(req.body);
+  post.save(function(err, document){
     if(err){
       res.status(500).json({
         msg: err
@@ -46,7 +46,7 @@ postRouter.post('/posts', function(req, res){
 });
 
 postRouter.put('/posts/:id', function(req, res){
-  post.findOneAndUpdate({_id: req.params.id}, req.body, function(err, document){
+  blogPost.findOneAndUpdate({_id: req.params.id}, req.body, function(err, document){
     if(err){
       res.status(500).json({
         msg: err
@@ -60,7 +60,7 @@ postRouter.put('/posts/:id', function(req, res){
 });
 
 postRouter.delete('/posts/:id', function(req, res){
-  post.remove({_id: req.params.id}, function(err, document){
+  blogPost.remove({_id: req.params.id}, function(err, document){
     if(err){
       res.status(500).json({
         msg: err
