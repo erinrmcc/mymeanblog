@@ -16,7 +16,7 @@
     function signup(user){
       return $http.post('/signup', user)
                   .then(function(response){
-                    console.log(response);
+                    return response;
                   });
     }
     function getAll(){
