@@ -8,11 +8,14 @@
       var userURL = '/users';
 
       function signup(user){
-        return $http.post(userURL, user);
+        return $http.post('/signup', user)
+                    .then(function(response){
+                      return response;
+                    });
       }
 
       function login(user){
-        return $http.post(userURL, user);
+        return $http.post('/login', user);
       }
 
       function getAll(){
