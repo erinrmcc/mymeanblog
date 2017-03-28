@@ -1,39 +1,51 @@
 (function() {
   angular.module('mymeanblog')
-  .factory('PostService', PostService);
+      .factory('PostService', PostService);
 
   PostService.$inject = ['$http'];
 
   function PostService($http){
-    var postURL = '/posts';
-
+    var base = '/posts';
     function getAll(){
-      return $http.get(postURL);
+      return $http.get(base)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
     function getOne(id){
-      return $http.get(`${postURL}/${id}`);
+      var url = `${base}/${id}`;
+      return $http.get(url)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
     function create(post){
-      return $http.post(postURL, post);
+      return $http.post(base, post)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
-    function deletePost(post){
-      return $http.delete(`${postURL}/${post._id}`);
-    }
-
     function update(post){
-      return $http.put(`${postURL}/${post._id}`, post);
+      var url = `${base}/${post._id}`;
+      return $http.put(url, post)
+                  .then(function(response){
+                    console.log(response);
+                  });
+    }
+    function deletePost(post){
+      var url = `${base}/${post._id}`;
+      return $http.delete(url)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
 
     return {
       getAll: getAll,
       getOne: getOne,
       create: create,
-      delete: deletePost,
-      update: udpate
+      update: update,
+      delete: deletePost
     }
   }
-
 }());
