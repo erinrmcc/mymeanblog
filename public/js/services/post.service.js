@@ -11,8 +11,8 @@
       return $http.get(postURL);
     }
 
-    function getOne(){
-      return $http.get(`${postURL}/${post._id}`);
+    function getOne(id){
+      return $http.get(`${postURL}/${id}`);
     }
 
     function create(post){
